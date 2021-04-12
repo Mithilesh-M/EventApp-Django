@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Event, Timing
-from .forms import CreateEventForm, UpdateEventForm
+from .forms import CreateEventForm, UpdateEventForm, AddTimeForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 import datetime
@@ -89,3 +89,25 @@ def EventUpdate(request, pk):
     }
 
     return render(request, 'eventapp/update_event.html', context)
+
+def AddTime(request, pk):
+    """View function for adding timing to event."""
+
+    event = get_object_or_404(Event, pk=pk)
+    if request.method == 'POST':
+
+        form = AddTimeForm(request.POST)
+
+        if form.is_valid():
+            event.timing_set.create(timing=form.cleaned_data['timing'],date=form.cleaned_data['date'])
+            return HttpResponseRedirect(reverse('event-detail', args=(event.id,) ))
+
+    else:
+        form = AddTimeForm()
+
+    context = {
+        'form': form,
+        'event': event,
+    }
+
+    return render(request, 'eventapp/time_createform.html', context)

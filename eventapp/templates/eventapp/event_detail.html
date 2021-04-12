@@ -25,8 +25,10 @@
    </div>
     <h3>Event Created On : {{ event.created }}</h3>
     <h3>Event Modified On : {{ event.modified }}</h3>
+    <h3>Event Timing : </h3>
+  <h3><button><a href="{% url 'add-event-time' event.id %}">Add Event Time</a></button></h3>
+   <div style="margin-left:20px;margin-top:20px">
 
-  <br>
   {% if event.timing_set.all %}
   <ul>
     {% for time in event.timing_set.all %}
@@ -34,9 +36,11 @@
         <h6>Event Timing :{{ time.timing }}</h6>
           <h6>Event Date :{{ time.date }}</h6>
       </li>
+      <br>
     {% endfor %}
   </ul>
   {% else %}
     <p>There are no timing added in this {{ event.title }}.</p>
   {% endif %}
+   </div>
 {% endblock %}

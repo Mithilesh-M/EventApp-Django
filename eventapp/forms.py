@@ -26,3 +26,10 @@ class UpdateEventForm(forms.Form):
         data = self.cleaned_data['name']
         return data
 
+class AddTimeForm(forms.Form):
+    timing = forms.TimeField()
+    date = forms.DateField()
+
+    def clean_renewal_date(self):
+        data = self.cleaned_data['name']
+        return data
