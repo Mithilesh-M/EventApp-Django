@@ -20,7 +20,7 @@
     {% endfor %}
     </ul>
      {% else %}
-      <p>There are no timing added in this {{ event.title }} city.</p>
+      <p>There are no tags added in this {{ event.title }}.</p>
      {% endif %}
    </div>
     <h3>Event Created On : {{ event.created }}</h3>
@@ -37,6 +37,6 @@
     {% endfor %}
   </ul>
   {% else %}
-    <p>There are no timing added in this {{ event.title }} city.</p>
+    <p>There are no timing added in this {{ event.title }}.</p>
   {% endif %}
 {% endblock %}
