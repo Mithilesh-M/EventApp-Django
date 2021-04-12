@@ -3,8 +3,8 @@
 {% block content %}
   <h1>Place: {{ place.title }}</h1>
 
-  <h4><a href="{% url 'place-delete' place.id %}">Delete Place</a></h4>
-  <h4><a href="{% url 'place-update' place.id %}">Update Place</a></h4>
+  <h4><button><a href="{% url 'place-delete' place.id %}">Delete Place</a></button></h4>
+  <h4><button><a href="{% url 'place-update' place.id %}">Update Place</a></button></h4>
 
   <p><strong>City:</strong> <a href="{{ place.city.get_absolute_url }}">{{ place.city.name }}</a></p> <!-- author detail link not yet defined -->
   <p><strong>Address:</strong> {{ place.address }}</p>

@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>City List</h1>
-  <h4><a href="{% url 'create-city' %}">Create City</a></h4>
+  <h4><button><a href="{% url 'create-city' %}">Create City</a></button></h4>
   {% if city_list %}
   <ul>
     {% for city in city_list %}

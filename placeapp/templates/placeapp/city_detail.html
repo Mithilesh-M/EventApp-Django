@@ -3,8 +3,8 @@
 {% block content %}
   <h1>City name : {{ city.name }}</h1>
   <br>
-  <h4><a href="{% url 'city-delete' city.id %}">Delete City</a></h4>
-  <h4><a href="{% url 'city-update' city.id %}">Update City</a></h4>
+  <h4><button><a href="{% url 'city-delete' city.id %}">Delete City</a></button></h4>
+  <h4><button><a href="{% url 'city-update' city.id %}">Update City</a></button></h4>
   <br>
     <h3>Places : </h3>
   <br>
