@@ -9,10 +9,6 @@ from .models import Location, Place, City
 class CreateCityForm(forms.Form):
     name = forms.CharField(max_length=100, help_text="Enter the name of the city")
 
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data
-
 class CreatePlaceForm(forms.Form):
     title = forms.CharField(max_length=100, help_text='Enter a place name')
     #location = forms.PointField(widget=forms.OSMWidget(attrs={'map_width': 800, 'map_height': 500}))
@@ -36,17 +32,10 @@ class CreatePlaceForm(forms.Form):
         help_text='Place Type',
     )
 
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data
-
 
 class UpdateCityForm(forms.Form):
     name = forms.CharField(max_length=100, help_text="Enter the name of the city")
 
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data
 
 class UpdatePlaceForm(forms.Form):
     title = forms.CharField(max_length=100, help_text='Enter a place name')
@@ -70,7 +59,3 @@ class UpdatePlaceForm(forms.Form):
         choices=PLACE_TYPE,
         help_text='Place Type',
     )
-
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data

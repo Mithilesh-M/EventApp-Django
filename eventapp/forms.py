@@ -11,9 +11,6 @@ class CreateEventForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all())
     tags = tags.TagField()
 
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data
 
 class UpdateEventForm(forms.Form):
     title = forms.CharField(max_length=200, help_text="Enter the name of the event")
@@ -22,14 +19,7 @@ class UpdateEventForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all())
     tags = tags.TagField()
 
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data
 
 class AddTimeForm(forms.Form):
     timing = forms.TimeField()
     date = forms.DateField()
-
-    def clean_renewal_date(self):
-        data = self.cleaned_data['name']
-        return data
