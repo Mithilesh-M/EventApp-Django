@@ -5,6 +5,7 @@ from .forms import CreateEventForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 import datetime
+from django.shortcuts import get_object_or_404
 
 
 class EventListView(generic.ListView):
@@ -39,3 +40,19 @@ def CreateEvent(request):
     }
 
     return render(request, 'eventapp/create_event.html', context)
+
+
+def EventDelete(request, pk):
+    """View function for deleting the city."""
+    event = get_object_or_404(Event, pk=pk)
+
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+        event.delete()
+        return HttpResponseRedirect(reverse('places'))
+
+    context = {
+        'event': event,
+    }
+
+    return render(request, 'eventapp/delete_event.html', context)
