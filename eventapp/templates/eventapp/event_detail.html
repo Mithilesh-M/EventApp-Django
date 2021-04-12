@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Event name : {{ event.title }}</h1>
+    <h3>Place : <a href="{% url 'place-detail' event.place.id %}">{{ event.place.title }}</a></h3>
+    <h3>City : <a href="{% url 'city-detail' event.place.city.id %}">{{ event.place.city }}</a></h3>
+    <h3>Event Description : {{ event.description }}</h3>
+    <h3>Event Created On : {{ event.created }}</h3>
+    <h3>Event Modified On : {{ event.modified }}</h3>
+
+  <br>
+  {% if event.timing_set.all %}
+  <ul>
+    {% for time in event.timing_set.all %}
+      <li>
+        <h6>Event Timing :{{ time.timing }}</h6>
+          <h6>Event Date :{{ time.date }}</h6>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no timing added in this {{ event.title }} city.</p>
+  {% endif %}
+{% endblock %}
