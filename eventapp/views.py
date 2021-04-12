@@ -111,3 +111,18 @@ def AddTime(request, pk):
     }
 
     return render(request, 'eventapp/time_createform.html', context)
+
+def DeleteTime(request, pk):
+    """View function for deleting the city."""
+    time = get_object_or_404(Timing, pk=pk)
+
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+        time.delete()
+        return HttpResponseRedirect(reverse('events'))
+
+    context = {
+        'time': time,
+    }
+
+    return render(request, 'eventapp/time_deleteform.html', context)

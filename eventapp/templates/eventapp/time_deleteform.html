@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Delete Time</h1>
+    <h4>Event : {{ time.event.title }}</h4>
+    <h4>Time : {{ time.timing }}</h4>
+    <h4>Date : {{ time.date }}</h4>
+  <form action="" method="post">
+      {% csrf_token %}
+    <input type="submit" value="Are you sure">
+  </form>
+{% endblock %}

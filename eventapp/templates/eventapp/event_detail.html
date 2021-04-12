@@ -35,6 +35,7 @@
       <li>
         <h6>Event Timing :{{ time.timing }}</h6>
           <h6>Event Date :{{ time.date }}</h6>
+          <button><a href="{% url 'delete-event-time' time.id %}">Delete time</a> </button>
       </li>
       <br>
     {% endfor %}
