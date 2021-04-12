@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>City name : {{ city.name }}</h1>
+  <br>
+  <h4><a href="{% url 'city-delete' city.id %}">Delete City</a></h4>
+  <h4><a href="{% url 'city-update' city.id %}">Update City</a></h4>
+  <br>
+    <h3>Places : </h3>
+  <br>
+  {% if city.place_set.all %}
+  <ul>
+    {% for place in city.place_set.all %}
+      <li>
+        <a href="{{ place.get_absolute_url }}">{{ place.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no places added in this {{ city.name }} city.</p>
+  {% endif %}
+{% endblock %}

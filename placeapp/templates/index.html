@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Place App</h1>
+  <p>This place app has the following record counts:</p>
+  <ul>
+    <li><strong>Places :</strong> {{ num_places }}</li>
+    <li><strong>Cities :</strong> {{ num_cities }}</li>
+  </ul>
+  <p>You have visited this page {{ num_visits }} time{% if num_visits > 1 %}s{% endif %}.</p>
+{% endblock %}

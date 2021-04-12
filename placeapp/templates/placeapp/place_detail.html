@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Place: {{ place.title }}</h1>
+
+  <h4><a href="{% url 'place-delete' place.id %}">Delete Place</a></h4>
+  <h4><a href="{% url 'place-update' place.id %}">Update Place</a></h4>
+
+  <p><strong>City:</strong> <a href="{{ place.city.get_absolute_url }}">{{ place.city.name }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Address:</strong> {{ place.address }}</p>
+  <p><strong>Phone:</strong> {{ place.phone }}</p>
+  <p><strong>Description:</strong> {{ place.description }}</p>
+  <p><strong>Type of place:</strong> {{ place.get_type_of_place_display }}</p>
+  <!-- <p><strong>Location:</strong> {{ place.location }}</p> -->
+
+{% endblock %}
