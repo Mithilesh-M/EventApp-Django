@@ -2,16 +2,15 @@ from django.db import models
 from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 from placeapp.models import Place
+from model_utils.models import TimeStampedModel
 
-class Event(models.Model):
+class Event(TimeStampedModel):
     """Model representing a Event."""
     title = models.CharField(max_length=200, help_text='Enter a event name')
     place = models.ForeignKey(Place, on_delete=models.SET_NULL, null=True, blank=True)
     tags = TaggableManager()
     description = models.CharField(max_length=200, help_text='Enter a event description')
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    created = models.DateField(null=True, blank=True)
-    modified = models.DateField(null=True, blank=True)
 
     def __str__(self):
         """String for representing the Model object."""
