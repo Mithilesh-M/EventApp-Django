@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Event, Timing
-from .forms import CreateEventForm
+from .forms import CreateEventForm, UpdateEventForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 import datetime
@@ -56,3 +56,36 @@ def EventDelete(request, pk):
     }
 
     return render(request, 'eventapp/delete_event.html', context)
+
+def EventUpdate(request, pk):
+    """View function for updating event."""
+    event = get_object_or_404(Event, pk=pk)
+
+    if request.method == 'POST':
+
+        form = UpdateEventForm(request.POST)
+
+        if form.is_valid():
+            event.title = form.cleaned_data['title']
+            event.place = form.cleaned_data['place']
+            event.description = form.cleaned_data['description']
+            event.user = form.cleaned_data['user']
+            event.tags = form.cleaned_data['tags']
+            event.modified = datetime.date.today()
+            event.save()
+            return HttpResponseRedirect(reverse('events'))
+
+    else:
+        event_original_title = event.title
+        event_original_place = event.place
+        event_original_description = event.description
+        event_original_user = event.user
+        event_original_tags = event.tags.all()
+        form = UpdateEventForm(initial={'title': event_original_title,'place': event_original_place, 'description':event_original_description, 'user':event_original_user, 'tags':event_original_tags})
+
+    context = {
+        'form': form,
+        'event': event,
+    }
+
+    return render(request, 'eventapp/update_event.html', context)

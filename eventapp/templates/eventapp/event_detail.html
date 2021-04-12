@@ -4,6 +4,7 @@
   <h1>Event name : {{ event.title }}</h1>
   <br>
   <h3><a href="{% url 'event-delete' event.id %}">Delete Event</a></h3>
+  <h3><a href="{% url 'event-update' event.id %}">Update Event</a></h3>
   <br>
     <h3>Place : <a href="{% url 'place-detail' event.place.id %}">{{ event.place.title }}</a></h3>
     <h3>City : <a href="{% url 'city-detail' event.place.city.id %}">{{ event.place.city }}</a></h3>

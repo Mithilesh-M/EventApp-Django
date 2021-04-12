@@ -17,6 +17,7 @@ class Event(models.Model):
         """String for representing the Model object."""
         return self.title
 
+
 class Timing(models.Model):
     """Model representing a Timing."""
     event = models.ForeignKey('Event', on_delete=models.CASCADE, null=True, blank=True)
