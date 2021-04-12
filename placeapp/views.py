@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Location, Place, City
+from eventapp.models import Event
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
@@ -13,10 +14,12 @@ def index(request):
 
     num_places = Place.objects.all().count()
     num_cities = City.objects.all().count()
+    num_events = Event.objects.all().count()
 
     context = {
         'num_places': num_places,
         'num_cities': num_cities,
+        'num_events': num_events,
     }
 
     return render(request, 'index.html', context=context)
