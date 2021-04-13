@@ -197,3 +197,15 @@ def PlaceUpdate(request, pk):
     }
 
     return render(request, 'placeapp/update_place.html', context)
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
+def PlaceMap(request, pk):
+    """View function for deleting the place."""
+    place = get_object_or_404(Place, pk=pk)
+
+    context = {
+        'place': place,
+    }
+
+    return render(request, 'placeapp/map_place.html', context)

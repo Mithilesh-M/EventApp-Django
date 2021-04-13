@@ -11,6 +11,6 @@
   <p><strong>Phone:</strong> {{ place.phone }}</p>
   <p><strong>Description:</strong> {{ place.description }}</p>
   <p><strong>Type of place:</strong> {{ place.get_type_of_place_display }}</p>
-  <!-- <p><strong>Location:</strong> {{ place.location }}</p> -->
+  <p><strong>Location:</strong> {{ place.location.point }} </p><h6><button> <a href="{% url 'place-map' place.id %}">Show in map</a></button></h6>
 
 {% endblock %}
