@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from .models import Location, Place, City
-from eventapp.models import Event
+from eventapp.models import Event, Timing
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import CreateCityForm, CreatePlaceForm, UpdateCityForm, UpdatePlaceForm
 from django.contrib.auth.decorators import login_required, permission_required
+import datetime
 
 
 def index(request):
@@ -14,12 +15,15 @@ def index(request):
 
     num_places = Place.objects.all().count()
     num_cities = City.objects.all().count()
-    num_events = Event.objects.all().count()
+    total_events = Event.objects.all().count()
+    date = datetime.date.today()
+    num_upcoming = Timing.objects.filter(date__gte=date).count()
 
     context = {
         'num_places': num_places,
         'num_cities': num_cities,
-        'num_events': num_events,
+        'total_events': total_events,
+        'num_upcoming': num_upcoming,
     }
 
     return render(request, 'index.html', context=context)
