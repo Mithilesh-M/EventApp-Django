@@ -26,9 +26,11 @@ def CreateEvent(request):
         form = CreateEventForm(request.POST)
 
         if form.is_valid():
-            date= datetime.date.today()
-            event = Event(title=form.cleaned_data['title'], place=form.cleaned_data['place'], description=form.cleaned_data['description'], tags=form.cleaned_data['tags'], user=form.cleaned_data['user'], created=date, modified=date)
+            tags = form.cleaned_data['tags']
+            event = Event(title=form.cleaned_data['title'], place=form.cleaned_data['place'], description=form.cleaned_data['description'], user=form.cleaned_data['user'])
             event.save()
+            for tag in tags:
+                event.tags.add(tag)
 
             return HttpResponseRedirect(reverse('events'))
 
@@ -71,7 +73,6 @@ def EventUpdate(request, pk):
             event.description = form.cleaned_data['description']
             event.user = form.cleaned_data['user']
             event.tags = form.cleaned_data['tags']
-            event.modified = datetime.date.today()
             event.save()
             return HttpResponseRedirect(reverse('events'))
 
