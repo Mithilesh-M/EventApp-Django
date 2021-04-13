@@ -68,12 +68,15 @@ def EventUpdate(request, pk):
         form = UpdateEventForm(request.POST)
 
         if form.is_valid():
+            tags = form.cleaned_data['tags']
             event.title = form.cleaned_data['title']
             event.place = form.cleaned_data['place']
             event.description = form.cleaned_data['description']
             event.user = form.cleaned_data['user']
-            event.tags = form.cleaned_data['tags']
             event.save()
+            event.tags.clear()
+            for tag in tags:
+                event.tags.add(tag)
             return HttpResponseRedirect(reverse('events'))
 
     else:
