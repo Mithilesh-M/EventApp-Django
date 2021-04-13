@@ -20,6 +20,8 @@
           <li><a href="{% url 'cities' %}">All Cities</a></li>
           <li><a href="{% url 'places' %}">All Places</a></li>
             <li><a href="{% url 'events' %}">All Events</a></li>
+            <li><a href="{% url 'filter-events' %}">Filter Events</a></li>
+
         {% if user.is_authenticated %}
             <li>User: {{ user.get_username }}</li>
             <li><a href="">Logout</a></li>

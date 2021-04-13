@@ -1,0 +1,65 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Event List</h1>
+    <h3>Events Today:</h3>
+  {% if today %}
+  <ul>
+    {% for time in today %}
+      <li>
+        <a href="{% url 'event-detail' time.event.id %}">{{ time.event.title }}</a>- {{ time.date }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no event today.</p>
+  {% endif %}
+<h3>Events Tomorrow:</h3>
+  {% if tomorrow %}
+  <ul>
+    {% for time in tomorrow %}
+      <li>
+        <a href="{% url 'event-detail' time.event.id %}">{{ time.event.title }}</a>- {{ time.date }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no event tomorrow.</p>
+  {% endif %}
+<h3>Events in next 7 days:</h3>
+  {% if week %}
+  <ul>
+    {% for time in week %}
+      <li>
+        <a href="{% url 'event-detail' time.event.id %}">{{ time.event.title }}</a>- {{ time.date }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no event in the next 1 week.</p>
+  {% endif %}
+<h3>Events in next 1 month:</h3>
+  {% if month %}
+  <ul>
+    {% for time in month %}
+      <li>
+        <a href="{% url 'event-detail' time.event.id %}">{{ time.event.title }}</a>- {{ time.date }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no event in the next 1 month.</p>
+  {% endif %}
+<h3>Events in next 1 year:</h3>
+  {% if year %}
+  <ul>
+    {% for time in year %}
+      <li>
+        <a href="{% url 'event-detail' time.event.id %}">{{ time.event.title }}</a>- {{ time.date }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no event in the next 1 year.</p>
+  {% endif %}
+{% endblock %}

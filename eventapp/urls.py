@@ -9,4 +9,5 @@ urlpatterns = [
     path('event/<int:pk>/update', views.EventUpdate, name='event-update'),
     path('event/<int:pk>/addtime/', views.AddTime, name='add-event-time'),
     path('event/<int:pk>/deletetime/', views.DeleteTime, name='delete-event-time'),
+    path('event/filter', views.FilterEvent, name='filter-events'),
 ]

@@ -126,3 +126,54 @@ def DeleteTime(request, pk):
     }
 
     return render(request, 'eventapp/time_deleteform.html', context)
+
+def FilterEvent(request):
+    """View function for filtering events."""
+
+    today_year = datetime.date.today().year
+    today_month = datetime.date.today().month
+    today_day = datetime.date.today().day
+    date = datetime.datetime.now()+datetime.timedelta(days=1)
+    today = Timing.objects.filter(date=datetime.date(today_year,today_month,today_day))
+    tomorrow = Timing.objects.filter(date=datetime.date(date.year,date.month,date.day))
+    timedelta = datetime.datetime.now()+datetime.timedelta(days=1)
+    start_date = datetime.date.today()
+    kwargs = {}
+    kwargs['day'] = int(timedelta.day)
+    kwargs['month'] = int(timedelta.month)
+    kwargs['year'] = int(timedelta.year)
+    start_date = start_date.replace(**kwargs)
+    timedelta = datetime.datetime.now()+datetime.timedelta(days=8)
+    end_date = datetime.date.today()
+    kwargs = {}
+    kwargs['day'] = int(timedelta.day)
+    kwargs['month'] = int(timedelta.month)
+    kwargs['year'] = int(timedelta.year)
+    end_date = end_date.replace(**kwargs)
+    week = Timing.objects.filter(date__range=[start_date, end_date])
+    timedelta = datetime.datetime.now() + datetime.timedelta(days=30)
+    end_date = datetime.date.today()
+    kwargs = {}
+    kwargs['day'] = int(timedelta.day)
+    kwargs['month'] = int(timedelta.month)
+    kwargs['year'] = int(timedelta.year)
+    end_date = end_date.replace(**kwargs)
+    month = Timing.objects.filter(date__range=[start_date, end_date])
+    timedelta = datetime.datetime.now() + datetime.timedelta(days=365)
+    end_date = datetime.date.today()
+    kwargs = {}
+    kwargs['day'] = int(timedelta.day)
+    kwargs['month'] = int(timedelta.month)
+    kwargs['year'] = int(timedelta.year)
+    end_date = end_date.replace(**kwargs)
+    year = Timing.objects.filter(date__range=[start_date, end_date])
+
+    context = {
+        'today': today,
+        'tomorrow': tomorrow,
+        'week': week,
+        'month': month,
+        'year': year,
+    }
+
+    return render(request, 'eventapp/filter_events.html', context=context)
