@@ -4,13 +4,15 @@
   <h1>City List</h1>
   <h4><button class="mybutton"><a href="{% url 'create-city' %}">Create City</a></button></h4>
   {% if city_list %}
-  <ul>
+  <table style="width:100%">
     {% for city in city_list %}
-      <li>
-        <a class="mylist-ele" href="{{ city.get_absolute_url }}">{{ city.name }}</a>
-      </li>
+    <tr>
+      <th style="text-align: center;"><a class="mylist-ele" href="{{ city.get_absolute_url }}">{{ city.name }}</a></th>
+      <th><button class="mybutton"><a href="{% url 'city-delete' city.id %}">Delete</a></button></th>
+      <th><button class="mybutton"><a href="{% url 'city-update' city.id %}">Update</a></button></th>
+    </tr>
     {% endfor %}
-  </ul>
+  </table>
   {% else %}
     <p>There are no city created in this app.</p>
   {% endif %}
