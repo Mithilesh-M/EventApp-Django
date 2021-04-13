@@ -51,7 +51,7 @@ def EventDelete(request, pk):
     # If this is a POST request then process the Form data
     if request.method == 'POST':
         event.delete()
-        return HttpResponseRedirect(reverse('places'))
+        return HttpResponseRedirect(reverse('events'))
 
     context = {
         'event': event,
