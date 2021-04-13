@@ -2,12 +2,12 @@
 
 {% block content %}
   <h1>City List</h1>
-  <h4><button><a href="{% url 'create-city' %}">Create City</a></button></h4>
+  <h4><button class="mybutton"><a href="{% url 'create-city' %}">Create City</a></button></h4>
   {% if city_list %}
   <ul>
     {% for city in city_list %}
       <li>
-        <a href="{{ city.get_absolute_url }}">{{ city.name }}</a>
+        <a class="mylist-ele" href="{{ city.get_absolute_url }}">{{ city.name }}</a>
       </li>
     {% endfor %}
   </ul>

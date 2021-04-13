@@ -3,14 +3,14 @@
 {% block content %}
   <h1>Place: {{ place.title }}</h1>
 
-  <h4><button><a href="{% url 'place-delete' place.id %}">Delete Place</a></button></h4>
-  <h4><button><a href="{% url 'place-update' place.id %}">Update Place</a></button></h4>
+  <h4><button class="mybutton"><a href="{% url 'place-delete' place.id %}">Delete Place</a></button></h4>
+  <h4><button class="mybutton"><a href="{% url 'place-update' place.id %}">Update Place</a></button></h4>
 
-  <p><strong>City:</strong> <a href="{{ place.city.get_absolute_url }}">{{ place.city.name }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>City:</strong> <a class="mylist-ele" href="{{ place.city.get_absolute_url }}">{{ place.city.name }}</a></p> <!-- author detail link not yet defined -->
   <p><strong>Address:</strong> {{ place.address }}</p>
   <p><strong>Phone:</strong> {{ place.phone }}</p>
   <p><strong>Description:</strong> {{ place.description }}</p>
   <p><strong>Type of place:</strong> {{ place.get_type_of_place_display }}</p>
-  <p><strong>Location:</strong> {{ place.location.point }} </p><h6><button> <a href="{% url 'place-map' place.id %}">Show in map</a></button></h6>
+  <p><strong>Location:</strong> {{ place.location.point }} </p><h6><button class="mybutton"> <a href="{% url 'place-map' place.id %}">Show in map</a></button></h6>
 
 {% endblock %}

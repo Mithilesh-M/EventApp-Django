@@ -3,8 +3,8 @@
 {% block content %}
   <h1>City name : {{ city.name }}</h1>
   <br>
-  <h4><button><a href="{% url 'city-delete' city.id %}">Delete City</a></button></h4>
-  <h4><button><a href="{% url 'city-update' city.id %}">Update City</a></button></h4>
+  <h4><button class="mybutton"><a href="{% url 'city-delete' city.id %}">Delete City</a></button></h4>
+  <h4><button class="mybutton"><a href="{% url 'city-update' city.id %}">Update City</a></button></h4>
   <br>
     <h3>Places : </h3>
   <br>
@@ -12,7 +12,7 @@
   <ul>
     {% for place in city.place_set.all %}
       <li>
-        <a href="{{ place.get_absolute_url }}">{{ place.title }}</a>
+        <a class="mylist-ele" href="{{ place.get_absolute_url }}">{{ place.title }}</a>
       </li>
     {% endfor %}
   </ul>

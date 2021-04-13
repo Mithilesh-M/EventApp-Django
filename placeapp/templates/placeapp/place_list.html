@@ -2,12 +2,12 @@
 
 {% block content %}
   <h1>Place List</h1>
-  <h4><button><a href="{% url 'create-place' %}">Create Place</a></button></h4>
+  <h4><button class="mybutton"><a href="{% url 'create-place' %}">Create Place</a></button></h4>
   {% if place_list %}
   <ul>
     {% for place in place_list %}
       <li>
-        <a href="{{ place.get_absolute_url }}">{{ place.title }}</a>
+        <a class="mylist-ele" href="{{ place.get_absolute_url }}">{{ place.title }}</a>
       </li>
     {% endfor %}
   </ul>

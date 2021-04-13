@@ -16,17 +16,17 @@
       <div class="mysidebar col-sm-2">
       {% block sidebar %}
         <ul class="sidebar-nav">
-          <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="{% url 'cities' %}">All Cities</a></li>
-          <li><a href="{% url 'places' %}">All Places</a></li>
-            <li><a href="{% url 'events' %}">All Events</a></li>
-            <li><a href="{% url 'filter-events' %}">Filter Events</a></li>
+          <li><a class= "mysidebar-menu" href="{% url 'index' %}">Home</a></li>
+          <li><a class= "mysidebar-menu" href="{% url 'cities' %}">All Cities</a></li>
+          <li><a class= "mysidebar-menu" href="{% url 'places' %}">All Places</a></li>
+            <li><a class= "mysidebar-menu" href="{% url 'events' %}">All Events</a></li>
+            <li><a class= "mysidebar-menu" href="{% url 'filter-events' %}">Filter Events</a></li>
 
         {% if user.is_authenticated %}
-            <li>User: {{ user.get_username }}</li>
-            <li><a href="">Logout</a></li>
+            <li class="mysidebar-menu" style="color: black;">User: {{ user.get_username }}</li>
+            <li><a class= "mysidebar-menu" href="">Logout</a></li>
         {% else %}
-            <li><a href="">Login</a></li>
+            <li><a class= "mysidebar-menu" href="">Login</a></li>
         {% endif %}
             </ul>
      {% endblock %}

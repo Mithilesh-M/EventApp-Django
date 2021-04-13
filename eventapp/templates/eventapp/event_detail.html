@@ -3,8 +3,8 @@
 {% block content %}
   <h1>Event name : {{ event.title }}</h1>
   <br>
-  <h3><button><a href="{% url 'event-delete' event.id %}">Delete Event</a></button></h3>
-  <h3><button><a href="{% url 'event-update' event.id %}">Update Event</a></button></h3>
+  <h3><button class="mybutton"><a href="{% url 'event-delete' event.id %}">Delete Event</a></button></h3>
+  <h3><button class="mybutton"><a href="{% url 'event-update' event.id %}">Update Event</a></button></h3>
   <br>
     <h3>Place : <a href="{% url 'place-detail' event.place.id %}">{{ event.place.title }}</a></h3>
     <h3>City : <a href="{% url 'city-detail' event.place.city.id %}">{{ event.place.city }}</a></h3>
@@ -26,7 +26,7 @@
     <h3>Event Created On : {{ event.created }}</h3>
     <h3>Event Modified On : {{ event.modified }}</h3>
     <h3>Event Timing : </h3>
-  <h3><button><a href="{% url 'add-event-time' event.id %}">Add Event Time</a></button></h3>
+  <h3><button class="mybutton"><a href="{% url 'add-event-time' event.id %}">Add Event Time</a></button></h3>
    <div style="margin-left:20px;margin-top:20px">
 
   {% if event.timing_set.all %}
@@ -35,7 +35,7 @@
       <li>
         <h6>Event Timing :{{ time.timing }}</h6>
           <h6>Event Date :{{ time.date }}</h6>
-          <button><a href="{% url 'delete-event-time' time.id %}">Delete time</a> </button>
+          <button class="mybutton"><a href="{% url 'delete-event-time' time.id %}">Delete time</a> </button>
       </li>
       <br>
     {% endfor %}
