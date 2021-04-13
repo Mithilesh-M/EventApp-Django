@@ -38,6 +38,7 @@ a:hover{
     font-size: larger;
     color: lightyellow;
     text-decoration: none;
+    border: 2px solid blue;
 }
 .mybutton:hover {background-color:burlywood}
 .mylist-ele{
