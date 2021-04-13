@@ -4,13 +4,15 @@
   <h1>Event List</h1>
   <h4><button class="mybutton"><a href="{% url 'create-event' %}">Create Event</a></button></h4>
   {% if event_list %}
-  <ul>
+  <table style="width:100%">
     {% for event in event_list %}
-      <li>
-        <a class="mylist-ele" href="{% url 'event-detail' event.id %}">{{ event.title }}</a>
-      </li>
+      <tr>
+        <th style="text-align: center;"><a class="mylist-ele" href="{% url 'event-detail' event.id %}">{{ event.title }}</a></th>
+        <th><button class="mybutton"><a href="{% url 'event-delete' event.id %}">Delete</a></button></th>
+        <th><button class="mybutton"><a href="{% url 'event-update' event.id %}">Update</a></button></th>
+      </tr>
     {% endfor %}
-  </ul>
+  </table>
   {% else %}
     <p>There are no event created in this app.</p>
   {% endif %}
