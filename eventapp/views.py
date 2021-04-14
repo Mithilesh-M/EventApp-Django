@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 import datetime
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 class EventListView(generic.ListView):
@@ -18,6 +19,8 @@ class EventDetailView(generic.DetailView):
     paginate_by = 10
 
 
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def CreateEvent(request):
     """View function for Creating Event."""
 
@@ -44,6 +47,8 @@ def CreateEvent(request):
     return render(request, 'eventapp/create_event.html', context)
 
 
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def EventDelete(request, pk):
     """View function for deleting the city."""
     event = get_object_or_404(Event, pk=pk)
@@ -59,6 +64,9 @@ def EventDelete(request, pk):
 
     return render(request, 'eventapp/delete_event.html', context)
 
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def EventUpdate(request, pk):
     """View function for updating event."""
     event = get_object_or_404(Event, pk=pk)
@@ -94,6 +102,9 @@ def EventUpdate(request, pk):
 
     return render(request, 'eventapp/update_event.html', context)
 
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def AddTime(request, pk):
     """View function for adding timing to event."""
 
@@ -116,6 +127,9 @@ def AddTime(request, pk):
 
     return render(request, 'eventapp/time_createform.html', context)
 
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def DeleteTime(request, pk):
     """View function for deleting the city."""
     time = get_object_or_404(Timing, pk=pk)
@@ -131,6 +145,9 @@ def DeleteTime(request, pk):
 
     return render(request, 'eventapp/time_deleteform.html', context)
 
+
+@login_required
+@permission_required('catalog.can_mark_returned', raise_exception=True)
 def FilterEvent(request):
     """View function for filtering events."""
 
