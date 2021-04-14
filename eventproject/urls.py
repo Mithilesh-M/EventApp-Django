@@ -23,5 +23,6 @@ urlpatterns = [
     path('placeapp/', include('placeapp.urls')),
     path('', RedirectView.as_view(url='placeapp/')),
     path('eventapp/', include('eventapp.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
