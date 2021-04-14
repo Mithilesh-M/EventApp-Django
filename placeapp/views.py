@@ -84,7 +84,9 @@ def CreatePlace(request):
         form = CreatePlaceForm(request.POST)
 
         if form.is_valid():
-            place = Place(title=form.cleaned_data['title'],description=form.cleaned_data['description'],address=form.cleaned_data['address'],phone=form.cleaned_data['phone'],city=form.cleaned_data['city'],type_of_place=form.cleaned_data['type_of_place'],)
+            location = Location(name=form.cleaned_data['title'],point=form.cleaned_data['location'])
+            location.save()
+            place = Place(title=form.cleaned_data['title'],description=form.cleaned_data['description'],address=form.cleaned_data['address'],phone=form.cleaned_data['phone'],city=form.cleaned_data['city'],type_of_place=form.cleaned_data['type_of_place'],location=location)
             place.save()
 
             return HttpResponseRedirect(reverse('places'))
@@ -179,6 +181,8 @@ def PlaceUpdate(request, pk):
             place.phone = form.cleaned_data['phone']
             place.city = form.cleaned_data['city']
             place.type_of_place = form.cleaned_data['type_of_place']
+            place.location.point = form.cleaned_data['location']
+            place.location.save()
             place.save()
             return HttpResponseRedirect(reverse('places'))
 
@@ -189,7 +193,8 @@ def PlaceUpdate(request, pk):
         place_original_phone = place.phone
         place_original_city = place.city
         place_original_type_of_place = place.type_of_place
-        form = UpdatePlaceForm(initial={'title': place_original_title,'description':place_original_description,'address':place_original_address,'phone':place_original_phone,'city':place_original_city,'type_of_place':place_original_type_of_place})
+        place_original_location = place.location.point
+        form = UpdatePlaceForm(initial={'title': place_original_title,'description':place_original_description,'address':place_original_address,'phone':place_original_phone,'city':place_original_city,'type_of_place':place_original_type_of_place, 'location':place_original_location})
 
     context = {
         'form': form,
