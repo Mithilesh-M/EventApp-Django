@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'eventproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'project5',
-        'USER': 'mithilesh',
-        'PASSWORD': 'mithilesh',
-        'HOST': 'localhost',
+        'NAME': 'd971fa453mul41',
+        'USER': 'obnmvwvurlstya',
+        'PASSWORD': '60d8ab6e1139386c0f5098a85f718b566acccf608c008d35fe064204f7cc4201',
+        'HOST': 'ec2-54-224-120-186.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
