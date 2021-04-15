@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 import datetime
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
+from .filters import TimeFilter
 
 
 class EventListView(generic.ListView):
@@ -151,20 +152,22 @@ def DeleteTime(request, pk):
 def FilterEvent(request):
     """View function for filtering events."""
 
+    timings = Timing.objects.all()
+    filter = TimeFilter(request.GET, queryset=timings)
     today_year = datetime.date.today().year
     today_month = datetime.date.today().month
     today_day = datetime.date.today().day
-    date = datetime.datetime.now()+datetime.timedelta(days=1)
-    today = Timing.objects.filter(date=datetime.date(today_year,today_month,today_day))
-    tomorrow = Timing.objects.filter(date=datetime.date(date.year,date.month,date.day))
-    timedelta = datetime.datetime.now()+datetime.timedelta(days=1)
+    date = datetime.datetime.now() + datetime.timedelta(days=1)
+    today = Timing.objects.filter(date=datetime.date(today_year, today_month, today_day))
+    tomorrow = Timing.objects.filter(date=datetime.date(date.year, date.month, date.day))
+    timedelta = datetime.datetime.now() + datetime.timedelta(days=1)
     start_date = datetime.date.today()
     kwargs = {}
     kwargs['day'] = int(timedelta.day)
     kwargs['month'] = int(timedelta.month)
     kwargs['year'] = int(timedelta.year)
     start_date = start_date.replace(**kwargs)
-    timedelta = datetime.datetime.now()+datetime.timedelta(days=8)
+    timedelta = datetime.datetime.now() + datetime.timedelta(days=8)
     end_date = datetime.date.today()
     kwargs = {}
     kwargs['day'] = int(timedelta.day)
@@ -195,6 +198,7 @@ def FilterEvent(request):
         'week': week,
         'month': month,
         'year': year,
+        'filter': filter,
     }
 
     return render(request, 'eventapp/filter_events.html', context=context)

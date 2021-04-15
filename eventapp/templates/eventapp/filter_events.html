@@ -1,7 +1,29 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Event List</h1>
+<h1>Custom Event Filter</h1>
+  <div class="margin-left:10%;margin-top:50%">
+
+    <h6>Specify Timing in HH:MM:SS</h6>
+    <h6>Specify Date in YYYY-MM-DD</h6>
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    </div>
+    <h5>Result</h5>
+    {% if filter.qs %}
+    <ul>
+    {% for time in filter.qs %}
+      <li>
+        <a class="mylist-ele" href="{% url 'event-detail' time.event.id %}">{{ time.event.title }}</a>- {{ time.date }}
+      </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no event from the filter.</p>
+  {% endif %}
+<h1>Event List</h1>
     <h3>Events Today:</h3>
   {% if today %}
   <ul>
